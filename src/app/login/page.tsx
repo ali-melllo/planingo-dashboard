@@ -14,6 +14,7 @@ export default function LoginPage() {
                 src={'/assets/shape.png'}
                 width={2000}
                 height={2000}
+                unoptimized
             />
             <div className="min-w-[630px] flex flex-col items-center absolute bg-white rounded-3xl shadow-2xl p-10">
                 <div className="w-3/12">
@@ -22,6 +23,7 @@ export default function LoginPage() {
                         src={'/assets/logo.png'}
                         width={500}
                         height={300}
+                        unoptimized
                     />
                 </div>
                 <h2 className="font-bold text-[32px] mt-10">Login to Account</h2>
