@@ -7,7 +7,7 @@ import LoginForm from "./_components/LoginForm"
 export default function LoginPage() {
 
     return (
-        <div className="h-screen flex justify-center items-center bg-[#4880FF] overflow-hidden">
+        <div className="h-screen flex w-full justify-center items-center bg-[#4880FF] overflow-hidden">
             <Image
                 className="w-full h-full"
                 alt={"Planingo Dashboard"}
@@ -16,7 +16,7 @@ export default function LoginPage() {
                 height={2000}
                 unoptimized
             />
-            <div className="min-w-[630px] flex flex-col items-center absolute bg-white rounded-3xl shadow-2xl p-10">
+            <div className="w-11/12 md:w-[630px] flex absolute flex-col items-center bg-white rounded-3xl shadow-2xl p-5 md:p-10">
                 <div className="w-3/12">
                     <Image
                         alt={"Planingo"}

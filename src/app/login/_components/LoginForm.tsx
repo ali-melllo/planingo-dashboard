@@ -49,8 +49,8 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-10">
-      <div className="grid w-full items-center gap-4">
-        <div className="flex flex-col space-y-2">
+      <div className="flex flex-col md:w-full gap-4">
+        <div className="flex w-full flex-col space-y-2">
           <Label htmlFor="email" className="font-semibold text-[18px] text-gray-700">
             Email address:
           </Label>
@@ -69,7 +69,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <div className="flex flex-col space-y-1.5 mt-8 relative">
+        <div className="flex w-full flex-col space-y-1.5 mt-8 relative">
           <Label htmlFor="password" className="font-semibold text-[18px] text-gray-700">
             Password:
           </Label>
@@ -91,7 +91,7 @@ export default function LoginForm() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 mt-2">
+        <div className="flex items-center justify-start space-x-2 mt-2">
           <Checkbox id="terms" />
           <Label htmlFor="terms" className="text-[18px] text-gray-700">
             Remember Password
@@ -107,7 +107,7 @@ export default function LoginForm() {
 
         <Button
           disabled={loading}
-          className="bg-[#005F73] hover:bg-[#154953] w-[418px] h-14 mx-auto my-5 text-[20px] font-bold rounded-xl"
+          className="bg-[#005F73] hover:bg-[#154953] w-full md:w-[418px] h-14 mx-auto my-5 text-[20px] font-bold rounded-xl"
         >
           {loading ? (
             <Image alt="Loading ..." src="/assets/loader.svg" className="animate-spin" width={24} height={24} />
