@@ -6,13 +6,13 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { Edit, MoreHorizontal, UserPenIcon } from 'lucide-react';
+import { MoreHorizontal, UserPenIcon } from 'lucide-react';
 
 interface CellActionProps {
     data: unknown;
 }
 
-export const CellAction: React.FC<CellActionProps> = ({ data }) => {
+export const CellAction: React.FC<CellActionProps> = () => {
 
     return (
         <>
