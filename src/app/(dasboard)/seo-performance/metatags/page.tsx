@@ -4,6 +4,7 @@ import { DataTable as MetatagsTable } from '@/components/ui/table/data-table';
 import { DATA_TABLE_MOCK } from '@/static/data';
 import { CellAction } from './_components/cell-action';
 import { ColumnDef } from '@tanstack/react-table';
+// import { useSearchParams } from 'next/navigation';
 
 export default function SeoPerformanceMetaTagsPage() {
 
@@ -32,6 +33,10 @@ export default function SeoPerformanceMetaTagsPage() {
                 </div>
         }
     ];
+
+    //   const searchParams = useSearchParams();
+    //   const page = searchParams.get('page');
+    //   const pageLimit = searchParams.get('limit');
 
     return (
         <div className='bg-white rounded-lg'>
