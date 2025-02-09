@@ -16,8 +16,8 @@ export default function LoginPage() {
                 height={2000}
                 unoptimized
             />
-            <div className="w-11/12 md:w-[630px] flex absolute flex-col items-center bg-white rounded-3xl shadow-2xl p-5 md:p-10">
-                <div className="w-3/12">
+            <div className="w-11/12 md:w-[630px] flex absolute flex-col items-center bg-white rounded-3xl shadow-2xl p-7 md:p-10">
+                <div className="w-6/12 md:w-3/12">
                     <Image
                         alt={"Planingo"}
                         src={'/assets/logo.png'}

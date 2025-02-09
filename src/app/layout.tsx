@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import { Loader } from "lucide-react";
+import { Providers } from "./providers";
 
 
 const poppins = Poppins({
@@ -25,8 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        <Suspense fallback={<div className="h-screen flex justify-center items-center"><Loader className="size-24 animate-spin"/></div>}>
-          {children}
+        <Suspense fallback={<div className="h-screen flex justify-center items-center"><Loader className="size-24 animate-spin" /></div>}>
+          <Providers>
+            {children}
+          </Providers>
         </Suspense>
       </body>
     </html>

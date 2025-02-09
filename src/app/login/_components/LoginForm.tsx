@@ -4,35 +4,35 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLoginUserMutation } from "@/lib/services/endpoints/admin/admin";
+import { AdminAttributesLoginParamsType } from "@/lib/services/endpoints/admin/types";
 import { Eye, EyeOff, Info } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<AdminAttributesLoginParamsType>();
 
-  // Handle form submission
+  const [loginUser, { isLoading , isError}] = useLoginUserMutation();
+
   const onSubmit = useCallback(
-    (data: unknown) => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        router.push("/");
-      }, 2000);
+    async (data: AdminAttributesLoginParamsType) => {
+      try {
+        await loginUser(data).unwrap();
+        toast("Successfully Logged In")
+        router.push("/dashboard");
+      } catch {
+console.log(isError)
+      }
       console.log("Form Data:", data);
     },
-    [router]
+    [loginUser, router]
   );
 
   const handleEmailBlur = useCallback(
@@ -41,7 +41,7 @@ export default function LoginForm() {
       const formattedEmail = email.replace(/\.(?=[^@]*@)/g, ""); // Remove all dots before "@"
 
       if (formattedEmail !== email) {
-        setValue("email", formattedEmail, { shouldValidate: true, shouldDirty: true });
+        setValue("username", formattedEmail, { shouldValidate: true, shouldDirty: true });
       }
     },
     [setValue]
@@ -51,15 +51,15 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-10">
       <div className="flex flex-col md:w-full gap-4">
         <div className="flex w-full flex-col space-y-2">
-          <Label htmlFor="email" className="font-semibold text-[18px] text-gray-700">
+          <Label htmlFor="username" className="font-semibold text-[18px] text-gray-700">
             Email address:
           </Label>
           <Input
-            id="email"
+            id="username"
             placeholder="example@gmail.com"
             className="h-14 !rounded-2xl border-gray-300 placeholder:text-[18px] !text-[18px] font-medium placeholder:text-[#6A7282] bg-[#F3F4F6]"
-            {...register("email", {
-              required: "Email is required",
+            {...register("username", {
+              required: "User name is required",
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+[^.]@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/,
                 message: "Invalid email format",
@@ -98,7 +98,7 @@ export default function LoginForm() {
           </Label>
         </div>
 
-        {(errors.email || errors.password) && (
+        {(errors.username || errors.password) && (
           <div className="flex items-center text-red-500">
             <Info className="size-5" />
             <p className="ml-3">This data is wrong</p>
@@ -106,10 +106,10 @@ export default function LoginForm() {
         )}
 
         <Button
-          disabled={loading}
+          disabled={isLoading}
           className="bg-[#005F73] hover:bg-[#154953] w-full md:w-[418px] h-14 mx-auto my-5 text-[20px] font-bold rounded-xl"
         >
-          {loading ? (
+          {isLoading ? (
             <Image alt="Loading ..." src="/assets/loader.svg" className="animate-spin" width={24} height={24} />
           ) : (
             "Sign In"
