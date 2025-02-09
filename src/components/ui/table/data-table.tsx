@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <ScrollArea className="h-[calc(80vh-220px)] relative bg-white rounded-lg border md:h-[calc(90dvh-240px)] overflow-auto">
-        <div className=' w-full bg-white p-5 h-20'>
+        <div className=' w-full bg-white p-5 flex items-center justify-between h-20'>
           <h2 className='font-bold font-inter text-2xl'>Pages</h2>
         </div>
         <div className="sticky top-0 bg-white z-10 shadow">
