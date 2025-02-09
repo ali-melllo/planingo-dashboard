@@ -62,10 +62,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <ScrollArea className="h-[calc(80vh-220px)] relative bg-white rounded-lg border md:h-[calc(90dvh-240px)] overflow-auto">
-        <div className=' w-full bg-white p-5 flex items-center justify-between h-20'>
-          <h2 className='font-bold font-inter text-2xl'>Pages</h2>
-        </div>
+      <ScrollArea className="h-[calc(80vh-220px)] relative bg-white border md:h-[calc(90dvh-340px)] overflow-auto">
         <div className="sticky top-0 bg-white z-10 shadow">
           <Table>
             <TableHeader>
@@ -120,10 +117,10 @@ export function DataTable<TData, TValue>({
             'No entries found'
           )}
         </div>
-        
+
 
         <div className="flex items-center space-x-1">
-          <Button className="rounded-none h-8 w-8 p-0 text-[#6B7280] border-[#D1D5DB] bg-white" onClick={() => onPageChange(page - 1)} disabled={page === 1}>
+          <Button className="rounded-none hover:bg-[#d1e8ed] h-8 w-8 p-0 text-[#6B7280] border-[#D1D5DB] bg-white" onClick={() => onPageChange(page - 1)} disabled={page === 1}>
             <ChevronLeftIcon color='#6B7280' className="h-4 w-4" />
           </Button>
 
@@ -137,7 +134,7 @@ export function DataTable<TData, TValue>({
             </Button>
           ))}
 
-          {pageCount > 4 && <Button className=" text-[#6B7280] border-[#D1D5DB] bg-white size-8 rounded-none">...</Button>}
+          {pageCount > 4 && <Button className=" text-[#6B7280] border-[#D1D5DB] bg-white size-8 rounded-none hover:bg-[#d1e8ed]">...</Button>}
 
           {pageCount > 3 && (
             <Button
@@ -148,7 +145,7 @@ export function DataTable<TData, TValue>({
             </Button>
           )}
 
-          <Button className="h-8 w-8 p-0 text-[#6B7280] border-[#D1D5DB] bg-white rounded-none" onClick={() => onPageChange(page + 1)} disabled={page >= pageCount}>
+          <Button className="h-8 w-8 p-0 text-[#6B7280] border-[#D1D5DB] bg-white rounded-none hover:bg-[#d1e8ed]" onClick={() => onPageChange(page + 1)} disabled={page >= pageCount}>
             <ChevronRightIcon color='#6B7280' className="h-4 w-4" />
           </Button>
         </div>
