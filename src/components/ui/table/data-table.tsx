@@ -48,9 +48,18 @@ export function DataTable<TData, TValue>({
 
   const slicedData = data.slice((page - 1) * pageSize, page * pageSize);
 
+  const indexedColumns: ColumnDef<TData, TValue>[] = [
+    {
+      id: "index",
+      header: "Row",
+      cell: ({ row }) => (row.index !== undefined ? (row.index + 1).toString() : "-"),
+    },    
+    ...columns, 
+  ];
+  
   const table = useReactTable({
     data: slicedData,
-    columns,
+    columns: indexedColumns,
     pageCount,
     state: {
       pagination: { pageIndex: page - 1, pageSize }
@@ -59,7 +68,7 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: true
   });
-
+  
   return (
     <div className="space-y-4">
       <ScrollArea className="h-[calc(80vh-220px)] relative bg-white border md:h-[calc(90dvh-340px)] overflow-auto">
@@ -69,7 +78,7 @@ export function DataTable<TData, TValue>({
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead className="w-2/12 !px-5 bg-[#F9FAFB] !py-4" key={header.id}>
+                    <TableHead className={`w-2/12 ${header.id === 'actions' ? "text-right" : "" } !px-5  bg-[#F9FAFB] !py-4`} key={header.id}>
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
@@ -81,15 +90,17 @@ export function DataTable<TData, TValue>({
         <Table>
           <TableBody>
             {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell className="w-2/12 !px-5" key={cell.id}>
+              table.getRowModel().rows
+                .filter(row => row.original !== null)
+                .map((row) => (
+                  <TableRow key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell className="w-2/12 !px-5" key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
@@ -113,11 +124,8 @@ export function DataTable<TData, TValue>({
               <span className="text-[#6B7280]">of</span>{' '}
               <span className="font-semibold text-[#111928]">{totalItems}</span>
             </>
-          ) : (
-            'No entries found'
-          )}
+          ) : ('')}
         </div>
-
 
         <div className="flex items-center space-x-1">
           <Button className="rounded-none hover:bg-[#d1e8ed] h-8 w-8 p-0 text-[#6B7280] border-[#D1D5DB] bg-white" onClick={() => onPageChange(page - 1)} disabled={page === 1}>
