@@ -38,9 +38,9 @@ export default function SeoPerformanceOverviewPage() {
                         pnl: "+2.34",
                     }} />
                 <Separator />
-                <div className="w-3/12 flex py-5 flex-col">
-                    <div className="flex flex-row">
-                        <div className="w-4/12 items-center flex flex-col">
+                <div className="w-3/12 flex p-5 flex-col">
+                    <div className="flex flex-row justify-between">
+                        <div className="w-3/12 flex flex-col">
                             <div className="flex items-center gap-1 text-[#6B7280] text-[14px]">
                                 <DesktopIcon color="#6B7280" />
                                 Desktop
@@ -48,7 +48,7 @@ export default function SeoPerformanceOverviewPage() {
                             <h2 className="text-[#111928]  text-2xl font-bold mt-2">76%</h2>
                             <p className="text-[16px] text-[#6B7280]">756.3k</p>
                         </div>
-                        <div className="w-4/12 items-center flex flex-col">
+                        <div className="w-3/12 flex flex-col">
                             <div className="flex items-center gap-1 text-[#6B7280] text-[14px]">
                                 <MobileIcon color="#6B7280" />
                                 Mobile
@@ -56,7 +56,7 @@ export default function SeoPerformanceOverviewPage() {
                             <h2 className="text-[#111928]  text-2xl font-bold mt-2">20%</h2>
                             <p className="text-[16px] text-[#6B7280]">56.1k</p>
                         </div>
-                        <div className="w-4/12 items-center flex flex-col">
+                        <div className="w-3/12 flex flex-col">
                             <div className="flex items-center gap-1 text-[#6B7280] text-[14px]">
                                 <TabletIcon color="#6B7280" />
                                 Tablet

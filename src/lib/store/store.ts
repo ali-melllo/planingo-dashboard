@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { api } from "./services/api";
+import { api } from "../services/api";
 
-import "./services/endpoints/admin/admin";
+import "../services/endpoints/admin/admin";
 
 export const store = configureStore({
   reducer: {

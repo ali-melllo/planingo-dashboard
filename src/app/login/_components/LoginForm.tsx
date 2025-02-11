@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { setAuthToken } from "@/lib/auth/action";
 import { useLoginUserMutation } from "@/lib/services/endpoints/admin/admin";
 import { AdminAttributesLoginParamsType } from "@/lib/services/endpoints/admin/types";
 import { Eye, EyeOff, Info } from "lucide-react";
@@ -19,21 +20,20 @@ export default function LoginForm() {
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<AdminAttributesLoginParamsType>();
 
-  const [loginUser, { isLoading , isError}] = useLoginUserMutation();
+  const [loginUser, { isLoading }] = useLoginUserMutation();
 
   const onSubmit = useCallback(
     async (data: AdminAttributesLoginParamsType) => {
       try {
-        await loginUser(data).unwrap();
-        toast("Successfully Logged In")
-        router.push("/dashboard");
+        const response = await loginUser(data).unwrap();
+        await setAuthToken(response.data.token);
+        localStorage.setItem("userEmail", response.data.admin.email);
+        toast("Welcome" + " " + response.data.admin.name)
+        router.push("/");
       } catch {
-console.log(isError)
+
       }
-      console.log("Form Data:", data);
-    },
-    [loginUser, router]
-  );
+    }, [loginUser, router]);
 
   const handleEmailBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {

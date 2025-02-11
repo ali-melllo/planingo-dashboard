@@ -61,7 +61,7 @@ export default function SeoPerformanceMetaTagsPage() {
                             key={category}
                             variant="ghost"
                             onClick={() => handleFilterChange(category)}
-                            className={`w-1/12 border-none shadow-none hover:bg-transparent hover:text-[#005F73]  ${isActive ? "text-[#005F73] font-semibold underline underline-offset-8" : "text-[#99A1AF]"
+                            className={`w-1/12 border-none shadow-none hover:bg-transparent hover:text-[#005F73] ${isActive ? "text-[#005F73] font-semibold underline underline-offset-8" : "text-[#99A1AF]"
                                 }`}
                         >
                             {category}
