@@ -20,6 +20,6 @@ COPY --from=builder /app ./
 
 EXPOSE 3000
 
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXT_PUBLIC_API_URL="https://api-stage.bamboo.travel"
 
 CMD ["npm", "run", "start"]

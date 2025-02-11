@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, BaseQueryFn, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { toast } from "sonner";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = "https://api-stage.bamboo.travel";
 
 const getToken = (): string | undefined => {
   return document.cookie
