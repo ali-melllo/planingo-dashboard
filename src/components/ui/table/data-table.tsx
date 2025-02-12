@@ -53,22 +53,20 @@ export function DataTable<TData, TValue>({
       id: "index",
       header: "Row",
       cell: ({ row }) => (row.index !== undefined ? (row.index + 1).toString() : "-"),
-    },    
-    ...columns, 
+    },
+    ...columns,
   ];
-  
+
   const table = useReactTable({
     data: slicedData,
     columns: indexedColumns,
     pageCount,
-    state: {
-      pagination: { pageIndex: page - 1, pageSize }
-    },
+    state: { pagination: { pageIndex: page - 1, pageSize } },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: true
   });
-  
+
   return (
     <div className="space-y-4">
       <ScrollArea className="h-[calc(80vh-220px)] relative bg-white border md:h-[calc(90dvh-340px)] overflow-auto">
@@ -78,7 +76,7 @@ export function DataTable<TData, TValue>({
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <TableHead className={`w-2/12 ${header.id === 'actions' ? "text-right" : "" } !px-5  bg-[#F9FAFB] !py-4`} key={header.id}>
+                    <TableHead className={`w-2/12 ${header.id === 'actions' ? "text-right" : "pr-20"} px-5  bg-[#F9FAFB] !py-4`} key={header.id}>
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
@@ -96,7 +94,7 @@ export function DataTable<TData, TValue>({
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (
                       <TableCell className="w-2/12 !px-5" key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
                     ))}
                   </TableRow>

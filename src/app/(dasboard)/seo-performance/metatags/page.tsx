@@ -43,16 +43,19 @@ export default function SeoPerformanceMetaTagsPage() {
         setSearchText(e.target.value);
     }, [])
 
-    const columns: ColumnDef<{ metaTitle: string, metaDescription: string }>[] = [
+    const columns: ColumnDef<{ metaTitle: string, metaDescription: string , h1:string }>[] = [
         {
             accessorKey: "metaTitle", header: "Title Tag",
-            cell: ({ row }) => (<div>{shortenString(row.original.metaTitle, 25)}</div>),
+            cell: ({ row }) => (<div>{shortenString(row.original.metaTitle, 20)}</div>),
         },
         {
             accessorKey: "metaDescription", header: "Meta Description",
-            cell: ({ row }) => (<div> {shortenString(row.original.metaDescription, 25)} </div>),
+            cell: ({ row }) => (<div> {shortenString(row.original.metaDescription, 20)} </div>),
         },
-        { accessorKey: "h1", header: "H1" },
+        {
+            accessorKey: "h1", header: "H1",
+            cell: ({ row }) => (<div> {shortenString(row.original.h1, 20)} </div>),
+        },
         {
             id: "actions",
             header: "Actions",
@@ -81,7 +84,7 @@ export default function SeoPerformanceMetaTagsPage() {
 
             <div className="w-full bg-white p-5 pt-0 flex items-center gap-x-5">
                 {categories.map((category) => {
-                    const isActive = searchParams.get("filter") === category.toLowerCase().replace(/\s+/g, "-") ||
+                    const isActive = type === category.toLowerCase().replace(/\s+/g, "-") ||
                         (category === "All" && !searchParams.get("filter"));
 
                     return (
