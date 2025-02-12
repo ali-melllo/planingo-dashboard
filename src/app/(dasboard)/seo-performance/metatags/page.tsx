@@ -27,7 +27,7 @@ export default function SeoPerformanceMetaTagsPage() {
         limit,
         type,
         searchText,
-    });
+    },{refetchOnMountOrArgChange: true});
 
     const handleFilterChange = useCallback((category: string) => {
         const params = new URLSearchParams(searchParams.toString());
