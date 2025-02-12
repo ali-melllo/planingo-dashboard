@@ -74,9 +74,9 @@ export function DataTable<TData, TValue>({
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
+                <TableRow key={headerGroup.id} >
                   {headerGroup.headers.map((header) => (
-                    <TableHead className={`w-2/12 ${header.id === 'actions' ? "text-right" : "pr-20"} px-5  bg-[#F9FAFB] !py-4`} key={header.id}>
+                    <TableHead className={`w-2/12 ${header.id === 'actions' ? "text-right" : ""} !px-5  bg-[#F9FAFB] !py-4`} key={header.id}>
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
@@ -134,8 +134,7 @@ export function DataTable<TData, TValue>({
             <Button
               key={i + 1}
               className={`${page === i + 1 ? 'bg-[#E6EFF1] text-[#005F73]' : ' text-[#6B7280] border-[#D1D5DB] bg-white'} h-8 w-8 rounded-none hover:bg-[#d1e8ed] p-0`}
-              onClick={() => onPageChange(i + 1)}
-            >
+              onClick={() => onPageChange(i + 1)}>
               {i + 1}
             </Button>
           ))}
